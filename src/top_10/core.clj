@@ -1,4 +1,5 @@
 (ns top-10.core
+  (:gen-class)
   (:require [clojure.data.csv :as csv]
             [clojure.java.io :as io]
             [clojure.string :as s]))
