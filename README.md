@@ -23,7 +23,7 @@ You will be repeatedly prompted to choose between one of random two entries.
 After each result, the software will update the ratings using the [ELO Rating](https://www.geeksforgeeks.org/elo-rating-algorithm/).
 You will also be able to save your progress into a local `results.csv` file and finish the session printing the resulting Top 10.
 
-```bash
+```
 Which of these games is better?
 1) Game A
 2) Game B

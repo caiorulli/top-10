@@ -81,10 +81,12 @@
 
 (defn top-10
   [ratings]
-  (let [sorted (sort-by val > ratings)]
-    (->> sorted
-         (take 10)
-         (map first)
+  (let [sorted    (sort-by val > ratings)
+        top-games (->> sorted
+                       (take 10)
+                       (map first))]
+    (->> (for [[position game] (map list (range 1 11) top-games)]
+           (str position ". " game))
          (s/join "\n")
          (str "\nOrdered top 10 games:\n\n"))))
 
