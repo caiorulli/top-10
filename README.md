@@ -5,29 +5,38 @@ I use it to order my top 10 games list. :)
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Download the latest jar from [here](https://github.com/caiorulli/top-10/releases).
+You will need Java installed to run it.
 
 ## Usage
 
-FIXME: explanation
+To start a top 10 ranking, think of all possible items first.
+If you are writing a top 10 games like me, think up of many good games you have played through the years.
+Then, write them down in a CSV in the same folder as the jar. They should each fill a line, as in the [example](https://github.com/caiorulli/top-10/blob/master/sample.csv).
+If you've named it `games.csv`, then run:
 
-    $ java -jar top-10-0.1.0-standalone.jar [args]
+```bash
+java -jar top-10-<version>-standalone.jar games.csv
+```
+    
+You will be repeatedly prompted to choose between one of random two entries.
+After each result, the software will update the ratings using the [ELO Rating](https://www.geeksforgeeks.org/elo-rating-algorithm/).
+You will also be able to save your progress into a local `results.csv` file and finish the session printing the resulting Top 10.
 
-## Options
+```bash
+Which of these games is better?
+1) Game A
+2) Game B
+3) Save and print top 10
+```
 
-FIXME: listing of options this app accepts.
+Later on, you can reload the saved progress by running the program without arguments.
 
-## Examples
+```bash
+java -jar top-10-<version>-standalone.jar
+```
 
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+That's about it. Have fun!
 
 ## License
 

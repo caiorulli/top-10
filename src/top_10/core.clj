@@ -67,15 +67,17 @@
 
 (defn load-ratings []
   (with-open [reader (io/reader "results.csv")]
-    (into {} (doall (csv/read-csv reader)))))
+    (->> (doall (csv/read-csv reader))
+         (map (fn [[k v]]
+                [k (Float. v)]))
+         (into {}))))
 
 (defn loop-message
   [[ga gb]]
   (str "\nWhich of these games is better?\n"
        "1) " ga "\n"
        "2) " gb "\n"
-       "3) Save current ratings\n"
-       "4) Print top 10 and finish"))
+       "3) Save and print top 10"))
 
 (defn top-10
   [ratings]
@@ -88,15 +90,9 @@
 
 (defn calculate-ratings
   [choice question-games ratings]
-  (let [question-ratings       (game-ratings question-games
-                                             ratings)
-        question-probabilities (probabilities question-ratings)
-        question-results       (result-points question-probabilities
-                                              choice
-                                              k)]
-    (new-ratings question-games
-                 question-results
-                 ratings)))
+  (let [question-probabilities (probabilities (game-ratings question-games ratings))
+        question-results       (result-points question-probabilities choice k)]
+    (new-ratings question-games question-results ratings)))
 
 (defn main-loop
   [ratings]
@@ -112,9 +108,8 @@
                                     ratings))
         3 (do
             (save-ratings-to-csv ratings)
-            (println "Saved ratings to results.csv file.")
-            (recur ratings))
-        4 (println (top-10 ratings))))))
+            (println "Saved ratings to results.csv file.\n")
+            (println (top-10 ratings)))))))
 
 (defn -main
   [& [filename]]
