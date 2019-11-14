@@ -97,11 +97,16 @@
         question-results       (result-points question-probabilities choice k)]
     (new-ratings question-games question-results ratings)))
 
+(defn try-integer [input]
+  (try
+    (Integer. input)
+    (catch Exception _ nil)))
+
 (defn main-loop
   [ratings]
   (let [question-games (random-games (keys ratings))]
     (println (loop-message question-games))
-    (let [answer (Integer. (read-line))]
+    (let [answer (try-integer (read-line))]
       (case answer
         1 (recur (calculate-ratings [1 0]
                                     question-games
@@ -112,7 +117,10 @@
         3 (do
             (save-ratings-to-csv ratings)
             (println "Saved ratings to results.csv file.\n")
-            (println (top-10 ratings)))))))
+            (println (top-10 ratings)))
+        (do
+          (save-ratings-to-csv ratings)
+          (println "Saved ratings to results.csv file.\n"))))))
 
 (defn -main
   [& [filename]]
