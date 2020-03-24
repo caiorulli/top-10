@@ -1,10 +1,23 @@
-(defproject top-10 "0.1.2"
-  :description "Choose your top 10 something!"
-  :url "http://github.com/caiorulli/top-10"
-  :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
-            :url "https://www.eclipse.org/legal/epl-2.0/"}
+(defproject top-10 "0.1.0-SNAPSHOT"
+  :description "FIXME: write this!"
+  :url "http://example.com/FIXME"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
+
+  :min-lein-version "2.7.1"
+
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 [org.clojure/data.csv "0.1.4"]]
-  :main ^:skip-aot top-10.core
-  :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+                 [org.clojure/clojurescript "1.10.597"]
+                 [re-frame "0.12.0"]
+                 [reagent "0.10.0"]]
+
+  :source-paths ["src"]
+
+  :aliases {"fig"       ["trampoline" "run" "-m" "figwheel.main"]
+            "fig:build" ["trampoline" "run" "-m" "figwheel.main" "-b" "dev" "-r"]
+            "fig:min"   ["run" "-m" "figwheel.main" "-O" "advanced" "-bo" "dev"]
+            "fig:test"  ["run" "-m" "figwheel.main" "-co" "test.cljs.edn" "-m" "top-10.test-runner"]}
+
+  :profiles {:dev {:dependencies [[com.bhauman/figwheel-main "0.2.3"]
+                                  [com.bhauman/rebel-readline-cljs "0.1.4"]]}})
+
