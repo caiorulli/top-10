@@ -1,2 +1,8 @@
 /* some style */
-
+.add-item-section {
+    padding: 16px;
+    background-color: #AAAA55
+    display: flex;
+    max-width: 512px;
+    justify-content: space-around;
+}
