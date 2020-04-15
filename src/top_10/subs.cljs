@@ -15,3 +15,8 @@
  :items
  (fn [db _]
    (:items db)))
+
+(rf/reg-sub
+ :choices
+ (fn [db _]
+   (:choices db)))

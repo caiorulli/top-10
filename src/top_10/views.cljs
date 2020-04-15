@@ -19,3 +19,17 @@
         [:button
          {:on-click #(rf/dispatch [:remove-item item-name])}
          "Remover"]]))])
+
+(defn choose-between-two-section []
+  [:div
+   [:button
+    {:on-click #(rf/dispatch [:generate-choices])}
+    "Sortear"]
+   (for [item-name @(rf/subscribe [:choices])]
+     [:div
+      {:key item-name}
+      item-name
+      [:button
+       {:on-click #(rf/dispatch [:choose-item item-name])}
+       "Escolher"]])])
+   
