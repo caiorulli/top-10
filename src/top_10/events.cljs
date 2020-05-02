@@ -5,10 +5,10 @@
 (rf/reg-event-db
  :initialize
  (fn [_ _]
-   {:current-item ""
-    :items        {}
-    :choices      []
-    :present      false}))
+   {:current-item   ""
+    :items          {}
+    :choices        []
+    :present-top-10 false}))
 
 (rf/reg-event-db
  :change-current-item
@@ -44,4 +44,4 @@
 (rf/reg-event-db
  :present-top-10
  (fn [db]
-   (assoc db :present true)))
+   (assoc db :present-top-10 true)))

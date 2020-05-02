@@ -12,11 +12,11 @@
   (gdom/getElement "app"))
 
 (defn app []
-  [:div
+  [:div.main
    [views/add-item-section]
    [views/list-items-section]
    [views/choose-between-two-section]
-   [:div (str @(rf/subscribe [:list]))]])
+   [views/current-top-10]])
 
 (defn mount [el]
   (rdom/render [app] el))

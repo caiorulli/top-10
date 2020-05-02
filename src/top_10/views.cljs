@@ -33,3 +33,14 @@
        {:on-click #(rf/dispatch [:choose-item item-name])}
        "Escolher"]])])
    
+(defn current-top-10 []
+  [:div
+   (if @(rf/subscribe [:show-top-10])
+     (for [item-name @(rf/subscribe [:top-10])]
+       [:div
+        {:key item-name}
+        item-name])
+     [:button
+      {:on-click #(rf/dispatch [:present-top-10])}
+      "Mostrar top 10"])])
+   

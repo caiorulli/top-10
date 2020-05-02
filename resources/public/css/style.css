@@ -1,8 +1,18 @@
 /* some style */
-.add-item-section {
-    padding: 16px;
-    background-color: #AAAA55
+body {
     display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+    font-family: 'FantasqueSansMonoRegular', sans-serif;
+    background-color: #0B0B0B;
+    color: #F2F2F2; 
+}
+
+.add-item-section {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
     max-width: 512px;
-    justify-content: space-around;
+    background-color: #2B2B2B;
 }
