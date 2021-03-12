@@ -1,22 +1,21 @@
 # top-10
 
-Choose your top 10 something!
-I use it to order my top 10 games list. :)
+Choose your top 10 something! A very small library to help you make an ELO ranking of anything at all. I use it to order my top 10 games list. :)
+It accompanies a simple terminal application so you can test it with simple CSV files.
 
-## Installation
+## Using it as a library
 
-Download the latest jar from [here](https://github.com/caiorulli/top-10/releases).
-You will need Java installed to run it.
+... to be continued
 
-## Usage
+## Using it as a terminal application
 
-To start a top 10 ranking, think of all possible items first.
+To start a top 10 ranking, think of all possible entries first.
 If you are writing a top 10 games like me, think up of many good games you have played through the years.
 Then, write them down in a CSV in the same folder as the jar. They should each fill a line, as in the [example](https://github.com/caiorulli/top-10/blob/master/sample.csv).
-If you've named it `games.csv`, then run:
+If you've named it `games.csv`, then run it with the [Clojure CLI tool](https://clojure.org/guides/deps_and_cli):
 
 ```bash
-java -jar top-10-<version>-standalone.jar games.csv
+clojure -M:run games.csv
 ```
     
 You will be repeatedly prompted to choose between one of random two entries.
@@ -24,7 +23,7 @@ After each result, the software will update the ratings using the [ELO Rating](h
 You will also be able to save your progress into a local `results.csv` file and finish the session printing the resulting Top 10.
 
 ```
-Which of these games is better?
+Which of these do you choose?
 1) Game A
 2) Game B
 3) Save and print top 10
@@ -33,14 +32,14 @@ Which of these games is better?
 Later on, you can reload the saved progress by running the program without arguments.
 
 ```bash
-java -jar top-10-<version>-standalone.jar
+clojure -M:run
 ```
 
 That's about it. Have fun!
 
 ## License
 
-Copyright © 2019 FIXME
+Copyright © 2020
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at

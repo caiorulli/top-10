@@ -6,14 +6,11 @@ pom.xml
 pom.xml.asc
 *.jar
 *.class
-/.lein-*
 /.nrepl-port
 .hgignore
 .hg/
 
-/.idea
-top-10.iml
-
 results.csv
 top_games.csv
 games.csv
+/.cpcache

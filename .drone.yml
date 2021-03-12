@@ -1,0 +1,14 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: download-deps
+    image: clojure:tools-deps
+    commands:
+      - clojure -P
+
+  - name: test
+    image: clojure:tools-deps
+    commands:
+      - clojure -M:test
