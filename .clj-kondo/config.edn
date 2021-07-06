@@ -1,0 +1,5 @@
+{:linters {:missing-docstring            {:level :warn}
+           :unsorted-required-namespaces {:level :warn}
+           :single-key-in                {:level :warn}
+           :shadowed-var                 {:level :warn}}
+ :lint-as {com.gfredericks.test.chuck.clojure-test/for-all clojure.core/let}}

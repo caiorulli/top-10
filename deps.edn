@@ -3,5 +3,7 @@
 
  :aliases
  {:run  {:main-opts ["-m" "top-10.terminal"]}
-  :test {:extra-deps {lambdaisland/kaocha {:mvn/version "1.0.829"}}
+  :test {:extra-deps {com.gfredericks/test.chuck {:mvn/version "0.2.11"}
+                      lambdaisland/kaocha        {:mvn/version "1.0.861"}
+                      org.clojure/test.check     {:mvn/version "1.1.0"}}
          :main-opts  ["-m" "kaocha.runner"]}}}

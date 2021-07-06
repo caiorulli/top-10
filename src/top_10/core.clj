@@ -9,8 +9,8 @@
 
 (defn ratings
   "Creates ratings map out of entry seq."
-  [entry]
-  (->> entry
+  [entries]
+  (->> entries
        (map (fn [entry] [entry initial-value]))
        (into {})))
 

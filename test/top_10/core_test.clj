@@ -1,7 +1,9 @@
 (ns top-10.core-test
-  (:require [top-10.core :as top-10]
-            [clojure.test :refer [deftest testing is]]))
-
+  (:require [clojure.test :refer [deftest testing is]]
+            [clojure.test.check.clojure-test :refer [defspec]]
+            [clojure.test.check.generators :as gen]
+            [com.gfredericks.test.chuck.clojure-test :refer [for-all]]
+            [top-10.core :as top-10]))
 
 (deftest core-test
   (let [games #{"Doom Eternal"
@@ -45,3 +47,35 @@
 
           (is (= ["Doom Eternal" "Dark Souls 3"]
                  (take 2 (top-10/top-list new-ratings)))))))))
+
+(defn- next-random-match
+  [ratings]
+  (let [entries (keys ratings)]
+    (if (seq entries)
+      (gen/let [winner (gen/elements entries)
+                loser  (gen/elements entries)]
+
+        (top-10/apply-match ratings winner loser))
+
+      (gen/return ratings))))
+
+(def gen-ratings
+  (-> (gen/fmap top-10/ratings gen/string-alphanumeric)
+      (gen/bind next-random-match)
+      (gen/bind next-random-match)
+      (gen/bind next-random-match)))
+
+(defn- ratings-average
+  [ratings]
+  (let [entry-amount (count (keys ratings))
+        sum          (reduce + (vals ratings))]
+    (bigdec (/ sum entry-amount))))
+
+(defspec ratings-spec 100
+  (for-all [ratings gen-ratings
+            :when (pos? (count ratings))]
+
+           (is (= (ratings-average ratings) top-10/initial-value))
+
+           (let [winners (top-10/top-list ratings)]
+             (is (apply >= (map #(get ratings %) winners))))))

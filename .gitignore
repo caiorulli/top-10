@@ -14,3 +14,5 @@ results.csv
 top_games.csv
 games.csv
 /.cpcache
+
+/.clj-kondo/.cache
